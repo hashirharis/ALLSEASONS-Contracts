@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+      <record id="ascs_contracts_tree_view" model="ir.ui.view">
+			<field name="name">ascs.contracts.tree</field>
+			<field name="model">ascs.contracts</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Contracts">
+					<field name="name" />
+					<field name="customer_id" />
+					<field name="start_date" />
+					<field name="end_date" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="ascs_contracts_form_view" model="ir.ui.view">
+			<field name="name">ascs.contracts.form</field>
+			<field name="model">ascs.contracts</field>
+			<field name="arch" type="xml">
+				<form string="Contracts" version="7.0">
+					
+					<sheet>
+						<group colspan="2" col="1">
+							<field name="name" />
+							<field name="customer_id" />
+						</group>
+						<group colspan="2" col="2">
+							<field name="start_date" />
+							<field name="end_date" />
+						</group>
+						<notebook>                    
+                     		<page string="Contract Details">
+                         		<field name="contract_details_id"/>                     
+                    		</page>
+                      		<page string="Terms and Conditions">
+                         		<field name="termsnconditions_id"/>                     
+                     		</page>
+                     	</notebook>						
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		
+
+		<record model="ir.actions.act_window" id="action_ascs_contracts_tree_view">
+			<field name="name">Contracts</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">ascs.contracts</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			
+			<!-- <field name="domain">[('field_name','condition',criteria)]</field> -->
+			<field name="view_id" ref="ascs_contracts_tree_view"/>
+		</record>
+    
+    	 <menuitem id="base.menu_base_rooms" name="Camp Management" />	 
+         <menuitem id="front_menu" name="Front Desk" parent="base.menu_base_rooms"/>            
+         <menuitem id="font_menu" name="Contracts" parent="front_menu" action="action_ascs_contracts_tree_view"/>  
+    </data>
+</openerp>
